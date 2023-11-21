@@ -1,5 +1,4 @@
 
-using System.Drawing;
 using Infrastructure;
 using iText.IO.Font.Constants;
 using iText.IO.Image;
@@ -338,7 +337,9 @@ namespace API.Controllers
             container2.Add(subtitulo1Sec2);
 
             // Seccion 2 - Table 1
-            Div containerTableSec2 = new Div().SetMarginTop(3);
+            Div containerTableSec2 = new Div().SetMarginTop(3)
+                                              .SetBorderLeft(new SolidBorder(verde, 1))
+                                              .SetMarginLeft(20);
 
             Table tableSec2 = new Table(UnitValue.CreatePercentArray(12)).UseAllAvailableWidth()
                                                                          .SetTextAlignment(TextAlignment.CENTER)
@@ -491,30 +492,42 @@ namespace API.Controllers
             containerTableSec2.Add(tableSec2);
             container2.Add(containerTableSec2);
 
+            // Seccion 2 - Subtitulo 2
+            Div containerSubtitulo2Sec2 = new Div().SetMarginTop(3)
+                                                   .SetFontSize(sizeSubtitulo)
+                                                   .SetBackgroundColor(plomo)
+                                                   .SetHeight(subtitulo1Sec2.GetHeight());
+
+            Table table2Subtitulo2 = new Table(UnitValue.CreatePercentArray(4))
+                                                        .UseAllAvailableWidth()
+                                                        .SetTextAlignment(TextAlignment.CENTER);
+
+            table2Subtitulo2.AddCell(new Cell(1, 2).Add(new Paragraph("SUBTITULO2")
+                                                .SetFontColor(blanco))
+                                                .SetBorder(Border.NO_BORDER)
+                                                .SetMarginBottom(5));
+
+            table2Subtitulo2.AddCell(new Cell().Add(new Paragraph("SUBTITULO 2.1")
+                                                .SetFontColor(blanco))
+                                                .SetBorder(Border.NO_BORDER)
+                                                .SetMarginBottom(5));
+
+            table2Subtitulo2.AddCell(new Cell().Add(new Paragraph("SUBTITULO 2.2")
+                                                .SetFontColor(blanco))
+                                                .SetBorder(Border.NO_BORDER)
+                                                .SetMarginBottom(5));
+            
+            containerSubtitulo2Sec2.Add(table2Subtitulo2);
+            container2.Add(containerSubtitulo2Sec2);
+
             // Seccion 2 - Table 2
-            Div containerTable2Sec2 = new Div().SetMarginTop(3);
+            Div containerTable2Sec2 = new Div().SetMarginTop(3)
+                                               .SetBorderLeft(new SolidBorder(verde, 1))
+                                               .SetMarginLeft(20);
 
             Table table2Sec2 = new Table(UnitValue.CreatePercentArray(4)).UseAllAvailableWidth()
                                                                          .SetTextAlignment(TextAlignment.CENTER)
                                                                          .SetFontSize(sizeTabla);
-
-            table2Sec2.AddCell(new Cell(1, 2).Add(new Paragraph("SUBTITULO2")
-                                                .SetFontColor(blanco))
-                                                .SetBorder(Border.NO_BORDER)
-                                                .SetBackgroundColor(plomo)
-                                                .SetMarginBottom(5));
-
-            table2Sec2.AddCell(new Cell().Add(new Paragraph("SUBTITULO 2.1")
-                                                .SetFontColor(blanco))
-                                                .SetBorder(Border.NO_BORDER)
-                                                .SetBackgroundColor(plomo)
-                                                .SetMarginBottom(5));
-
-            table2Sec2.AddCell(new Cell().Add(new Paragraph("SUBTITULO 2.2")
-                                                .SetFontColor(blanco))
-                                                .SetBorder(Border.NO_BORDER)
-                                                .SetBackgroundColor(plomo)
-                                                .SetMarginBottom(5));
 
             for(int i = 0; i < 2; i++)
             {
@@ -546,7 +559,9 @@ namespace API.Controllers
             container2.Add(subtitulo3Sec2);
 
             // Seccion 2 - Tabla 3
-            Div containerTable3Sec2 = new Div().SetMarginTop(3);
+            Div containerTable3Sec2 = new Div().SetMarginTop(3)
+                                               .SetBorderLeft(new SolidBorder(verde, 1))
+                                               .SetMarginLeft(20);
 
             Table table3Sec2 = new Table(UnitValue.CreatePercentArray(7)).UseAllAvailableWidth()
                                                                          .SetTextAlignment(TextAlignment.CENTER)
@@ -662,7 +677,9 @@ namespace API.Controllers
             container2.Add(subtitulo4Sec2);
 
             // Seccion 2 - Table 4 
-            Div containerTable4Sec2 = new Div().SetMarginTop(3);
+            Div containerTable4Sec2 = new Div().SetMarginTop(3)
+                                               .SetBorderLeft(new SolidBorder(verde, 1))
+                                               .SetMarginLeft(20);
 
             Table table4Sec2 = new Table(UnitValue.CreatePercentArray(7))
                                                   .UseAllAvailableWidth()
@@ -740,7 +757,9 @@ namespace API.Controllers
             container2.Add(subtitulo5Sec2);
 
             // Seccion 2 - Table 5
-            Div containerTable5Sec2 = new Div().SetMarginTop(3);
+            Div containerTable5Sec2 = new Div().SetMarginTop(3)
+                                               .SetBorderLeft(new SolidBorder(verde, 1))
+                                               .SetMarginLeft(20);
 
             Table table5Sec2 = new Table(UnitValue.CreatePercentArray(7))
                                                   .UseAllAvailableWidth()
