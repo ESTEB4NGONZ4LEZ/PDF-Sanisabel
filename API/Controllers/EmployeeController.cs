@@ -275,8 +275,7 @@ namespace API.Controllers
             // Seccion 2
             Div container2 = new Div().SetWidth(pdf.GetDefaultPageSize().GetWidth() * 70f / 100f - 4)
                                       .SetHeight(pdf.GetDefaultPageSize().GetHeight() - 4)
-                                      .SetBackgroundColor(blanco)
-                                      .SetVerticalAlignment(VerticalAlignment.MIDDLE);
+                                      .SetBackgroundColor(blanco);
             
             // Seccion 2 - Header
             ImageData imageData2 = ImageDataFactory.Create("C:/Users/Esteban/Documents/PDFReport/img/img2.png"); // Cambiar ruta logo
