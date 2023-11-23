@@ -51,7 +51,8 @@ namespace API.Controllers
             // PRIMERA PAGINA
             // Primera seccion
             Div container1 = new Div().SetWidth(pdf.GetDefaultPageSize().GetWidth() * 30f / 100f - 4)
-                                      .SetHeight(pdf.GetDefaultPageSize().GetHeight() - 4);
+                                      .SetHeight(pdf.GetDefaultPageSize().GetHeight() - 4)
+                                      .SetVerticalAlignment(VerticalAlignment.MIDDLE);
 
             ImageData imageData = ImageDataFactory.Create("C:/Users/Esteban/Documents/PDFReport/img/img1.png"); // Cambiar ruta
             Image img1 = new(imageData);
@@ -60,7 +61,6 @@ namespace API.Controllers
 
             // Primera Seccion - Primer Parrafo
             Paragraph parrafo = new Paragraph().SetTextAlignment(TextAlignment.JUSTIFIED)
-                                               .SetMarginTop(5)
                                                .SetMarginLeft(20)
                                                .SetMarginBottom(5)
                                                .SetMarginRight(20)
@@ -275,7 +275,8 @@ namespace API.Controllers
             // Seccion 2
             Div container2 = new Div().SetWidth(pdf.GetDefaultPageSize().GetWidth() * 70f / 100f - 4)
                                       .SetHeight(pdf.GetDefaultPageSize().GetHeight() - 4)
-                                      .SetBackgroundColor(blanco);
+                                      .SetBackgroundColor(blanco)
+                                      .SetVerticalAlignment(VerticalAlignment.MIDDLE);
             
             // Seccion 2 - Header
             ImageData imageData2 = ImageDataFactory.Create("C:/Users/Esteban/Documents/PDFReport/img/img2.png"); // Cambiar ruta logo
@@ -289,9 +290,9 @@ namespace API.Controllers
 
             Div containerheader1 = new Div().SetWidth(150)
                                             .Add(new Paragraph("PALABRAS EN TAMANIO GRANDE EN BLANCO") // Reemplazar 
-                                            .SetFontSize(sizeTitulo)) 
+                                            .SetFontSize(13).SetMarginBottom(0)) 
                                             .Add(new Paragraph("Texto Descriptivo")  // Reemplazar
-                                            .SetFontSize(sizeTexto))
+                                            .SetFontSize(8).SetMarginTop(0))
                                             .SetTextAlignment(TextAlignment.CENTER);
 
             headerSeccion2.AddCell(new Cell().Add(containerheader1)
@@ -532,16 +533,16 @@ namespace API.Controllers
             for(int i = 0; i < 2; i++)
             {
                 table2Sec2.AddCell(new Cell(1, 2).Add(new Paragraph($"Texto {i + 1}")
-                                                    .SetBorderBottom(new SolidBorder(negro, 1)))
-                                                    .SetBorder(Border.NO_BORDER));
+                                                 .SetBorderBottom(new SolidBorder(negro, 1)))
+                                                 .SetBorder(Border.NO_BORDER));
 
                 table2Sec2.AddCell(new Cell().Add(new Paragraph($"VAL {i + 1}")
-                                                    .SetBorderBottom(new SolidBorder(negro, 1)))
-                                                    .SetBorder(Border.NO_BORDER));
+                                             .SetBorderBottom(new SolidBorder(negro, 1)))
+                                             .SetBorder(Border.NO_BORDER));
 
                 table2Sec2.AddCell(new Cell().Add(new Paragraph($"VAL {i + 1}")
-                                                    .SetBorderBottom(new SolidBorder(negro, 1)))
-                                                    .SetBorder(Border.NO_BORDER));
+                                             .SetBorderBottom(new SolidBorder(negro, 1)))
+                                             .SetBorder(Border.NO_BORDER));
             }
 
             containerTable2Sec2.Add(table2Sec2);
@@ -832,19 +833,608 @@ namespace API.Controllers
 
             // SEGUNDA PAGINA
             // Tercera Seccion
-            Table tablePage2 = new (2);
-
             Div container3 = new Div().SetWidth(pdf.GetDefaultPageSize().GetWidth() * 50f / 100f - 4)
                                       .SetHeight(pdf.GetDefaultPageSize().GetHeight() - 4)
-                                      .SetBackgroundColor(ColorConstants.YELLOW);
+                                      .SetVerticalAlignment(VerticalAlignment.MIDDLE);
+
+            // Seccion 3 - Titulo 3
+            Div titulo3 = new Div().SetBackgroundColor(verde)
+                                   .SetWidth(container2.GetWidth())
+                                   .SetMarginTop(2)
+                                   .SetTextAlignment(TextAlignment.CENTER);
+
+            titulo3.Add(new Paragraph("TITULO 3").SetFontColor(blanco)
+                                                 .SetFontSize(sizeTitulo));
+
+            container3.Add(titulo3);
+
+            // Seccion 3 - Subtitulo 6
+            Div subtitulo6Sec3 = new Div().SetBackgroundColor(plomo)
+                                          .SetWidth(container2.GetWidth())
+                                          .SetMarginTop(2)
+                                          .SetTextAlignment(TextAlignment.CENTER);
+
+            subtitulo6Sec3.Add(new Paragraph("SUBTITULO 6").SetFontColor(blanco)
+                                                           .SetFontSize(sizeSubtitulo));
+
+            container3.Add(subtitulo6Sec3);
+
+            // Seccion 3 - Tabla 6
+            Div containerTable6 = new Div().SetMarginTop(3)
+                                           .SetBorderLeft(new SolidBorder(verde, 1))
+                                           .SetMarginLeft(20)
+                                           .SetMarginRight(20);
+
+            Table table6 = new Table(UnitValue.CreatePercentArray(10)).UseAllAvailableWidth()
+                                                                      .SetTextAlignment(TextAlignment.CENTER)
+                                                                      .SetFontSize(sizeTabla);
+
+            table6.AddCell(new Cell(1, 2).Add(new Paragraph(""))
+                                         .SetBorder(Border.NO_BORDER));
             
+            table6.AddCell(new Cell(1, 2).Add(new Paragraph("CATG1")
+                                         .SetFontColor(verde)
+                                         .SetBorderBottom(new SolidBorder(verde, 1)))
+                                         .SetBorder(Border.NO_BORDER));
+
+            table6.AddCell(new Cell(1, 2).Add(new Paragraph("CATG2")
+                                         .SetFontColor(plomo)
+                                         .SetBorderBottom(new SolidBorder(plomo, 1)))
+                                         .SetBorder(Border.NO_BORDER));
+
+            table6.AddCell(new Cell(1, 2).Add(new Paragraph("CATG3")
+                                         .SetBorderBottom(new SolidBorder(negro, 1)))
+                                         .SetBorder(Border.NO_BORDER));
+
+            table6.AddCell(new Cell(1, 2).Add(new Paragraph("CATG4")
+                                         .SetFontColor(negro)
+                                         .SetBorderBottom(new SolidBorder(negro, 1)))
+                                         .SetBorder(Border.NO_BORDER));
+
+            for(int i = 0; i < 10; i++)
+            {
+                table6.AddCell(new Cell(1, 2).Add(new Paragraph($"Texto {i + 1}")
+                                             .SetTextAlignment(TextAlignment.CENTER)
+                                             .SetBorderBottom(new SolidBorder(negro, 1)))
+                                             .SetBorder(Border.NO_BORDER));
+
+                table6.AddCell(new Cell().Add(new Paragraph("TEXT")
+                                         .SetFontColor(verde)
+                                         .SetBorderBottom(new SolidBorder(verde, 1)))
+                                         .SetBorder(Border.NO_BORDER));
+
+                table6.AddCell(new Cell().Add(new Paragraph("TEXT")
+                                         .SetFontColor(verde)
+                                         .SetBorderBottom(new SolidBorder(verde, 1)))
+                                         .SetBorder(Border.NO_BORDER));
+
+                table6.AddCell(new Cell().Add(new Paragraph("TEXT")
+                                         .SetFontColor(plomo)
+                                         .SetBorderBottom(new SolidBorder(plomo, 1)))
+                                         .SetBorder(Border.NO_BORDER));
+
+                table6.AddCell(new Cell().Add(new Paragraph("TEXT")
+                                         .SetFontColor(plomo)
+                                         .SetBorderBottom(new SolidBorder(plomo, 1)))
+                                         .SetBorder(Border.NO_BORDER));
+
+                table6.AddCell(new Cell().Add(new Paragraph("TEXT")
+                                         .SetFontColor(negro)
+                                         .SetBorderBottom(new SolidBorder(negro, 1)))
+                                         .SetBorder(Border.NO_BORDER));
+
+                table6.AddCell(new Cell().Add(new Paragraph("TEXT")
+                                         .SetFontColor(negro)
+                                         .SetBorderBottom(new SolidBorder(negro, 1)))
+                                         .SetBorder(Border.NO_BORDER));
+
+                table6.AddCell(new Cell().Add(new Paragraph("TEXT")
+                                         .SetFontColor(negro)
+                                         .SetBorderBottom(new SolidBorder(negro, 1)))
+                                         .SetBorder(Border.NO_BORDER));
+
+                table6.AddCell(new Cell().Add(new Paragraph("TEXT")
+                                         .SetFontColor(negro)
+                                         .SetBorderBottom(new SolidBorder(negro, 1)))
+                                         .SetBorder(Border.NO_BORDER));
+            }
+            
+            containerTable6.Add(table6);
+            container3.Add(containerTable6);
+
+            // Seccion 3 - Subtitulo 7
+            Div subtitulo6 = new Div().SetBackgroundColor(plomo)
+                                      .SetWidth(container2.GetWidth())
+                                      .SetMarginTop(2)
+                                      .SetTextAlignment(TextAlignment.CENTER);
+
+            subtitulo6.Add(new Paragraph("SUBTITULO 7").SetFontColor(blanco)
+                                                       .SetFontSize(sizeSubtitulo));
+
+            container3.Add(subtitulo6);
+
+            // Seccion 3 - Tabla 7
+            Div containerTable7 = new Div().SetMarginTop(3)
+                                           .SetMarginLeft(20)
+                                           .SetMarginRight(150)
+                                           .SetMarginTop(10);
+
+            Table table7 = new Table(UnitValue.CreatePercentArray(5)).UseAllAvailableWidth()
+                                                                     .SetTextAlignment(TextAlignment.CENTER)
+                                                                     .SetFontSize(sizeTabla)
+                                                                     .SetBorder(new SolidBorder(verde, 1));
+
+            for(int i = 0; i < 2; i++)
+            {
+                table7.AddCell(new Cell(4, 2).Add(new Paragraph($"Texto {i + 1}")
+                                             .SetTextAlignment(TextAlignment.CENTER)
+                                             .SetMaxWidth(100))
+                                             .SetBorder(new SolidBorder(verde, 1)));
+
+                table7.AddCell(new Cell(1, 2).Add(new Paragraph("CATG 1")
+                                             .SetFontColor(plomo))
+                                             .SetBorder(new SolidBorder(verde, 1)));
+
+                table7.AddCell(new Cell().Add(new Paragraph("CATG 2")
+                                         .SetFontColor(plomo))
+                                         .SetBorder(new SolidBorder(verde, 1)));
+
+                for(int j = 0; j < 3; j++)
+                {
+                    table7.AddCell(new Cell().Add(new Paragraph("VAL")
+                                             .SetFontColor(negro))
+                                             .SetBorder(new SolidBorder(verde, 1)));
+
+                    table7.AddCell(new Cell().Add(new Paragraph("VAL")
+                                             .SetFontColor(negro))
+                                             .SetBorder(new SolidBorder(verde, 1)));
+
+                    table7.AddCell(new Cell().Add(new Paragraph("VAL")
+                                             .SetFontColor(negro))
+                                             .SetBorder(new SolidBorder(verde, 1)));
+                }
+            }
+
+            for(int i = 0; i < 2; i++)
+            {
+                table7.AddCell(new Cell(5, 2).Add(new Paragraph($"Texto {i + 1}")
+                                             .SetTextAlignment(TextAlignment.CENTER))
+                                             .SetBorder(new SolidBorder(verde, 1)));
+
+                table7.AddCell(new Cell(1, 2).Add(new Paragraph("CATG 1")
+                                             .SetFontColor(plomo))
+                                             .SetBorder(new SolidBorder(verde, 1)));
+
+                table7.AddCell(new Cell().Add(new Paragraph("CATG 2")
+                                         .SetFontColor(plomo))
+                                         .SetBorder(new SolidBorder(verde, 1)));
+
+                for(int j = 0; j < 4; j++)
+                {
+                    table7.AddCell(new Cell().Add(new Paragraph("VAL")
+                                             .SetFontColor(negro))
+                                             .SetBorder(new SolidBorder(verde, 1)));
+
+                    table7.AddCell(new Cell().Add(new Paragraph("VAL")
+                                             .SetFontColor(negro))
+                                             .SetBorder(new SolidBorder(verde, 1)));
+
+                    table7.AddCell(new Cell().Add(new Paragraph("VAL")
+                                             .SetFontColor(negro))
+                                             .SetBorder(new SolidBorder(verde, 1)));
+                }
+            }
+            
+            containerTable7.Add(table7);
+            container3.Add(containerTable7);
+
+            // Seccion 3 - Texto 1
+            Div texto1Sec3 = new Div().SetWidth(container2.GetWidth())
+                                      .SetMarginTop(10)
+                                      .SetTextAlignment(TextAlignment.CENTER)
+                                      .SetMarginLeft(20)
+                                      .SetMarginRight(150);
+
+            texto1Sec3.Add(new Paragraph("TEXTO 1").SetFontColor(negro)
+                                                   .SetFontSize(sizeSubtitulo));
+
+            container3.Add(texto1Sec3);
+
+            // Seccion 3 - Texto 2
+            Div texto2Sec3 = new Div().SetWidth(container2.GetWidth())
+                                      .SetMarginTop(2)
+                                      .SetTextAlignment(TextAlignment.CENTER)
+                                      .SetMarginLeft(20)
+                                      .SetMarginRight(150);
+
+            texto2Sec3.Add(new Paragraph("TEXTO 2").SetFontColor(negro)
+                                                   .SetFontSize(sizeSubtitulo));
+
+            container3.Add(texto2Sec3);
+
+            // Cuarta Seccion
             Div container4 = new Div().SetWidth(pdf.GetDefaultPageSize().GetWidth() * 50f / 100f - 4)
                                       .SetHeight(pdf.GetDefaultPageSize().GetHeight() - 4)
-                                      .SetBackgroundColor(ColorConstants.GRAY);
+                                      .SetVerticalAlignment(VerticalAlignment.MIDDLE);
 
+            // Seccion 4 - Subtitulo 8
+            Div subtitulo8 = new Div().SetBackgroundColor(plomo)
+                                      .SetWidth(container2.GetWidth())
+                                      .SetTextAlignment(TextAlignment.CENTER);
+
+            subtitulo8.Add(new Paragraph("SUBTITULO 8").SetFontColor(blanco)
+                                                       .SetFontSize(sizeSubtitulo));
+
+            container4.Add(subtitulo8);
+
+            // Seccion 4 - Tabla 8 
+            Div containerTable8 = new Div().SetMarginTop(3)
+                                           .SetMarginLeft(20)
+                                           .SetBorderLeft(new SolidBorder(verde, 1));
+
+            Table table8 = new Table(UnitValue.CreatePercentArray(7)).UseAllAvailableWidth()
+                                                                     .SetTextAlignment(TextAlignment.CENTER)
+                                                                     .SetFontSize(sizeTabla);
+
+            for(int i = 0; i < 1; i++)
+            {
+                table8.AddCell(new Cell(2, 2).Add(new Paragraph($"Texto {i + 1}")
+                                             .SetTextAlignment(TextAlignment.CENTER)
+                                             .SetMaxWidth(105))
+                                             .SetBorder(Border.NO_BORDER));
+
+                table8.AddCell(new Cell().Add(new Paragraph("CATG 1")
+                                         .SetBorderBottom(new SolidBorder(verde, 1))
+                                         .SetFontColor(verde))
+                                         .SetBorder(Border.NO_BORDER));
+
+                table8.AddCell(new Cell().Add(new Paragraph("CATG 2")
+                                         .SetBorderBottom(new SolidBorder(plomo, 1))
+                                         .SetFontColor(plomo))
+                                         .SetBorder(Border.NO_BORDER));
+
+                table8.AddCell(new Cell().Add(new Paragraph("CATG 3")
+                                         .SetBorderBottom(new SolidBorder(negro, 1))
+                                         .SetFontColor(negro))
+                                         .SetBorder(Border.NO_BORDER));
+
+                table8.AddCell(new Cell().Add(new Paragraph("CATG 4")
+                                         .SetBorderBottom(new SolidBorder(verde, 1))
+                                         .SetFontColor(verde))
+                                         .SetBorder(Border.NO_BORDER));
+
+                table8.AddCell(new Cell().Add(new Paragraph("CATG 5")
+                                         .SetBorderBottom(new SolidBorder(negro, 1))
+                                         .SetFontColor(negro))
+                                         .SetBorder(Border.NO_BORDER));
+
+                for(int j = 0; j < 1; j++)
+                {
+                    table8.AddCell(new Cell().Add(new Paragraph("VAL")
+                                             .SetBorderBottom(new SolidBorder(verde, 1))
+                                             .SetFontColor(verde))
+                                             .SetBorder(Border.NO_BORDER));
+
+                    table8.AddCell(new Cell().Add(new Paragraph("VAL")
+                                             .SetBorderBottom(new SolidBorder(plomo, 1))
+                                             .SetFontColor(plomo))
+                                             .SetBorder(Border.NO_BORDER));
+
+                    table8.AddCell(new Cell().Add(new Paragraph("VAL")
+                                             .SetBorderBottom(new SolidBorder(negro, 1))
+                                             .SetFontColor(negro))
+                                             .SetBorder(Border.NO_BORDER));
+
+                    table8.AddCell(new Cell().Add(new Paragraph("VAL")
+                                             .SetBorderBottom(new SolidBorder(verde, 1))
+                                             .SetFontColor(verde))
+                                             .SetBorder(Border.NO_BORDER));
+
+                    table8.AddCell(new Cell().Add(new Paragraph("VAL")
+                                             .SetBorderBottom(new SolidBorder(negro, 1))
+                                             .SetFontColor(plomo))
+                                             .SetBorder(Border.NO_BORDER));
+                }
+            }
+
+            containerTable8.Add(table8);
+            container4.Add(containerTable8);
+
+            // Seccion 4 - Subtitulo 9
+            Div subtitulo9 = new Div().SetBackgroundColor(plomo)
+                                      .SetWidth(container4.GetWidth())
+                                      .SetMarginTop(2)
+                                      .SetTextAlignment(TextAlignment.CENTER);
+
+            subtitulo9.Add(new Paragraph("SUBTITULO 9").SetFontColor(blanco)
+                                                       .SetFontSize(sizeSubtitulo));
+
+            container4.Add(subtitulo9);
+
+            // Seccion 4 = Texto 4
+            Div texto3 = new Div().SetWidth(container4.GetWidth())
+                                  .SetTextAlignment(TextAlignment.CENTER);
+
+            texto3.Add(new Paragraph("TEXTO").SetFontColor(negro)
+                                             .SetFontSize(sizeSubtitulo)
+                                             .SetMarginLeft(20));
+
+            container4.Add(texto3);
+
+            // Seccion 4 - Container tabla y texto
+            Div container6 = new Div().SetWidth(container4.GetWidth().GetValue() * 90f / 100f);
+            
+            Div container5 = new Div().SetWidth(8)
+                                      .SetPadding(3)
+                                      .SetMarginLeft(17)
+                                      .SetBorderLeft(new SolidBorder(verde, 1))
+                                      .SetHeight(100f)
+                                      .SetVerticalAlignment(VerticalAlignment.MIDDLE)
+                                      .SetTextAlignment(TextAlignment.CENTER);
+            // Seccion 4 = Texto 4
+            Div texto4 = new Div().SetWidth(container5.GetWidth());
+
+            texto4.Add(new Paragraph("TEXTO").SetFontColor(negro)
+                                             .SetFontSize(sizeSubtitulo));
+
+            container5.Add(texto4);
+
+            // Seccion 4 - Tabla 9
+            Div containerTable9 = new();
+
+            Table table9 = new Table(UnitValue.CreatePercentArray(5)).UseAllAvailableWidth()
+                                                                     .SetTextAlignment(TextAlignment.CENTER)
+                                                                     .SetFontSize(sizeTabla);
+
+            table9.AddCell(new Cell().Add(new Paragraph($"")
+                                     .SetTextAlignment(TextAlignment.CENTER))
+                                     .SetBorder(Border.NO_BORDER));
+
+            table9.AddCell(new Cell().Add(new Paragraph($"Texto 1")
+                                     .SetTextAlignment(TextAlignment.CENTER)
+                                     .SetBorderBottom(new SolidBorder(verde, 1))
+                                     .SetFontColor(verde))
+                                     .SetBorder(Border.NO_BORDER));
+
+            table9.AddCell(new Cell().Add(new Paragraph($"Texto 2")
+                                     .SetTextAlignment(TextAlignment.CENTER)
+                                     .SetBorderBottom(new SolidBorder(plomo, 1))
+                                     .SetFontColor(plomo))
+                                     .SetBorder(Border.NO_BORDER));
+
+            table9.AddCell(new Cell().Add(new Paragraph($"Texto 3")
+                                     .SetTextAlignment(TextAlignment.CENTER)
+                                     .SetBorderBottom(new SolidBorder(verde, 1))
+                                     .SetFontColor(verde))
+                                     .SetBorder(Border.NO_BORDER));
+
+            table9.AddCell(new Cell().Add(new Paragraph($"Texto 4")
+                                     .SetTextAlignment(TextAlignment.CENTER)
+                                     .SetBorderBottom(new SolidBorder(plomo, 1))
+                                     .SetFontColor(plomo))
+                                     .SetBorder(Border.NO_BORDER));
+
+            for(int i = 0; i < 6; i++)
+            {
+                table9.AddCell(new Cell().Add(new Paragraph($"Texto {i + 1}")
+                                         .SetBorderBottom(new SolidBorder(negro, 1))
+                                         .SetTextAlignment(TextAlignment.CENTER))
+                                         .SetBorder(Border.NO_BORDER));
+
+                table9.AddCell(new Cell().Add(new Paragraph("CATG 1")
+                                         .SetBorderBottom(new SolidBorder(verde, 1))
+                                         .SetFontColor(verde))
+                                         .SetBorder(Border.NO_BORDER));
+
+                table9.AddCell(new Cell().Add(new Paragraph("CATG 2")
+                                         .SetBorderBottom(new SolidBorder(plomo, 1))
+                                         .SetFontColor(plomo))
+                                         .SetBorder(Border.NO_BORDER));
+
+                table9.AddCell(new Cell().Add(new Paragraph("CATG 3")
+                                         .SetBorderBottom(new SolidBorder(verde, 1))
+                                         .SetFontColor(verde))
+                                         .SetBorder(Border.NO_BORDER));
+
+                table9.AddCell(new Cell().Add(new Paragraph("CATG 4")
+                                         .SetBorderBottom(new SolidBorder(plomo, 1))
+                                         .SetFontColor(plomo))
+                                         .SetBorder(Border.NO_BORDER));
+            }
+
+            containerTable9.Add(table9);
+            container6.Add(containerTable9);
+
+            Table table9Seccion4 = new (2);
+            table9Seccion4.AddCell(new Cell().Add(container5).SetBorder(Border.NO_BORDER));
+            table9Seccion4.AddCell(new Cell().Add(container6).SetBorder(Border.NO_BORDER));
+            container4.Add(table9Seccion4);
+
+            // Seccion 4 - Texto 5
+            Div texto5 = new Div().SetWidth(container4.GetWidth())
+                                  .SetMarginLeft(20);
+
+            texto5.Add(new Paragraph("TEXTO").SetFontColor(negro)
+                                             .SetFontSize(sizeSubtitulo));
+
+            container4.Add(texto5);
+
+            // Seccion 4 - Subtitulo 10
+            Div subtitulo10 = new Div().SetBackgroundColor(plomo)
+                                       .SetWidth(container4.GetWidth())
+                                       .SetMarginTop(2)
+                                       .SetMarginBottom(3)
+                                       .SetTextAlignment(TextAlignment.CENTER);
+
+            subtitulo10.Add(new Paragraph("SUBTITULO 10").SetFontColor(blanco)
+                                                         .SetFontSize(sizeSubtitulo));
+
+            container4.Add(subtitulo10);
+
+            // Seccion 4 - Container tabla 10
+            Div containerTabla10 = new Div().SetWidth(container4.GetWidth())
+                                            .SetBorderLeft(new SolidBorder(verde, 1))
+                                            .SetMarginLeft(20)
+                                            .SetMarginRight(150)
+                                            .SetBorderLeft(new SolidBorder(verde, 1));
+
+            Table tabla10 = new Table(UnitValue.CreatePercentArray(4)).UseAllAvailableWidth()
+                                                                      .SetTextAlignment(TextAlignment.CENTER)
+                                                                      .SetFontSize(sizeTabla)
+                                                                      .SetMarginTop(10)
+                                                                      .SetMarginLeft(5);
+
+            tabla10.AddCell(new Cell(2, 2).Add(new Paragraph($"TEXTO")
+                                          .SetBorderBottom(new SolidBorder(negro, 1))
+                                          .SetTextAlignment(TextAlignment.CENTER)
+                                          .SetFontSize(8)
+                                          .SetMaxWidth(118)
+                                          .SetHeight(20))
+                                         .SetBorder(Border.NO_BORDER));
+
+            tabla10.AddCell(new Cell(2, 2).Add(new Paragraph($"TEXTO")
+                                          .SetBorderBottom(new SolidBorder(negro, 1))
+                                          .SetTextAlignment(TextAlignment.CENTER)
+                                          .SetFontSize(8)
+                                          .SetMaxWidth(118)
+                                          .SetHeight(20))
+                                          .SetBorder(Border.NO_BORDER));
+
+            for(int i = 0; i < 5; i++)
+            {
+                tabla10.AddCell(new Cell(1, 2).Add(new Paragraph($"Texto {i + 1}")
+                                              .SetBorderBottom(new SolidBorder(negro, 1))
+                                              .SetTextAlignment(TextAlignment.CENTER))
+                                              .SetBorder(Border.NO_BORDER));
+
+                tabla10.AddCell(new Cell(1, 2).Add(new Paragraph($"Texto {i + 1}")
+                                              .SetBorderBottom(new SolidBorder(negro, 1))
+                                              .SetTextAlignment(TextAlignment.CENTER))
+                                              .SetBorder(Border.NO_BORDER));
+            }
+
+            containerTabla10.Add(tabla10);
+            container4.Add(containerTabla10);
+
+            // Seccion 4 - Parrafo tabla 10
+            containerTabla10.Add(new Paragraph().SetTextAlignment(TextAlignment.JUSTIFIED)
+                                                .SetPadding(5)
+                                                .SetFontSize(sizeTexto)
+                                                .Add("Esta es la primera línea del párrafo justificado.")
+                                                .Add("Esta es la segunda línea del párrafo justificado.")
+                                                .Add("Esta es la tercera línea del párrafo justificado."));
+
+            // Seccion 4 - Subtitulo 11
+            Div subtitulo11 = new Div().SetBackgroundColor(plomo)
+                                       .SetWidth(container4.GetWidth())
+                                       .SetMarginTop(2)
+                                       .SetMarginBottom(3)
+                                       .SetTextAlignment(TextAlignment.CENTER);
+
+            subtitulo11.Add(new Paragraph("SUBTITULO 11").SetFontColor(blanco)
+                                                         .SetFontSize(sizeSubtitulo));
+
+            container4.Add(subtitulo11);
+
+            // Seccion 4 - Parrafo dos lineas justificado
+            Div containerParrafo = new Div().SetWidth(container4.GetWidth())
+                                            .SetBorderLeft(new SolidBorder(verde, 1))
+                                            .SetMarginLeft(20)
+                                            .SetMarginRight(150)
+                                            .SetBorderLeft(new SolidBorder(verde, 1));
+
+            containerParrafo.Add(new Paragraph().SetTextAlignment(TextAlignment.JUSTIFIED)
+                                                .SetPadding(5)
+                                                .SetFontSize(sizeTexto)
+                                                .Add("Esta es la primera línea del párrafo justificado.")
+                                                .Add("Esta es la segunda línea del párrafo justificado."));
+
+            container4.Add(containerParrafo);
+
+            // Seccion 4 - Subtitulo 12
+            Div subtitulo12 = new Div().SetBackgroundColor(plomo)
+                                       .SetWidth(container4.GetWidth())
+                                       .SetMarginTop(2)
+                                       .SetTextAlignment(TextAlignment.CENTER);
+
+            subtitulo12.Add(new Paragraph("SUBTITULO 12").SetFontColor(blanco)
+                                                         .SetFontSize(sizeSubtitulo));
+
+            container4.Add(subtitulo12);
+
+            // Seccion 4 - Tabla 11
+            // Seccion 2 - Table 5
+            Div containerTable11 = new Div().SetMarginTop(3)
+                                            .SetBorderLeft(new SolidBorder(verde, 1))
+                                            .SetMarginLeft(20);
+
+            Table table11 = new Table(UnitValue.CreatePercentArray(7))
+                                               .UseAllAvailableWidth()
+                                               .SetTextAlignment(TextAlignment.CENTER)
+                                               .SetFontSize(sizeTabla);
+
+            table11.AddCell(new Cell(1, 2).Add(new Paragraph(""))
+                                          .SetBorder(Border.NO_BORDER));
+
+            table11.AddCell(new Cell().Add(new Paragraph("CATG 1")
+                                      .SetFontColor(verde)
+                                      .SetBorderBottom(new SolidBorder(verde, 1)))
+                                      .SetBorder(Border.NO_BORDER));
+
+            table11.AddCell(new Cell().Add(new Paragraph("CATG 2") 
+                                      .SetFontColor(plomo)
+                                      .SetBorderBottom(new SolidBorder(plomo, 1)))
+                                      .SetBorder(Border.NO_BORDER));
+
+            table11.AddCell(new Cell().Add(new Paragraph("CATG 3")
+                                      .SetBorderBottom(new SolidBorder(negro, 1)))
+                                      .SetBorder(Border.NO_BORDER));
+
+            table11.AddCell(new Cell().Add(new Paragraph("CATG 4")
+                                      .SetFontColor(verde)
+                                      .SetBorderBottom(new SolidBorder(verde, 1)))
+                                      .SetBorder(Border.NO_BORDER));
+
+            table11.AddCell(new Cell().Add(new Paragraph("CATG 5")
+                                      .SetBorderBottom(new SolidBorder(negro, 1)))
+                                      .SetBorder(Border.NO_BORDER));
+            
+            for(int i = 0; i < 4; i++)
+            {
+                table11.AddCell(new Cell(1, 2).Add(new Paragraph($"Texto {i + 1}")
+                                              .SetBorderBottom(new SolidBorder(negro, 1)))
+                                              .SetBorder(Border.NO_BORDER));
+
+                table11.AddCell(new Cell().Add(new Paragraph("VAL")
+                                          .SetFontColor(verde)
+                                          .SetBorderBottom(new SolidBorder(verde, 1)))
+                                          .SetBorder(Border.NO_BORDER));
+
+                table11.AddCell(new Cell().Add(new Paragraph("VAL") 
+                                          .SetFontColor(plomo)
+                                          .SetBorderBottom(new SolidBorder(plomo, 1)))
+                                          .SetBorder(Border.NO_BORDER));
+
+                table11.AddCell(new Cell().Add(new Paragraph("VAL")
+                                          .SetBorderBottom(new SolidBorder(negro, 1)))
+                                          .SetBorder(Border.NO_BORDER));
+
+                table11.AddCell(new Cell().Add(new Paragraph("VAL")
+                                          .SetFontColor(verde)
+                                          .SetBorderBottom(new SolidBorder(verde, 1)))
+                                          .SetBorder(Border.NO_BORDER));
+
+                table11.AddCell(new Cell().Add(new Paragraph("VAL")
+                                          .SetBorderBottom(new SolidBorder(negro, 1)))
+                                          .SetBorder(Border.NO_BORDER));
+            }
+
+            containerTable11.Add(table11);
+            container4.Add(containerTable11);
+
+            Table tablePage2 = new (2);
             tablePage2.AddCell(new Cell().Add(container3).SetBorder(Border.NO_BORDER));
             tablePage2.AddCell(new Cell().Add(container4).SetBorder(Border.NO_BORDER));
-
             document.Add(tablePage2);
 
             document.Close();   
